@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dvclvx0u4y0fw"]
+
+[ext_resource type="PackedScene" uid="uid://c614k46wi4ox4" path="res://Scenes/Agents/Base_Agent.tscn" id="1_kn0nf"]
+
+[node name="Social_worker_agent" unique_id=585923694 instance=ExtResource("1_kn0nf")]

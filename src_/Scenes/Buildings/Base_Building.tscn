@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cydy17ggfk1jj"]
+
+[ext_resource type="Script" uid="uid://bue4c0ojwvy3h" path="res://Scenes/Buildings/Base_Building.gd" id="1_b32rr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htpha"]
+size = Vector2(18, 19)
+
+[node name="base_building_node" type="Node2D" unique_id=1588752614]
+script = ExtResource("1_b32rr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1927106614]
+region_enabled = true
+region_rect = Rect2(90, 14, 60, 70)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2020833464]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=648870306]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_htpha")
+disabled = true

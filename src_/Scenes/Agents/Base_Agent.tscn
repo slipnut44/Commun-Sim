@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c614k46wi4ox4"]
+
+[ext_resource type="Script" uid="uid://b0m07p0vcfcgi" path="res://Scenes/Agents/Base_Agent.gd" id="1_15pem"]
+
+[node name="Base_Agent" type="CharacterBody2D" unique_id=585923694]
+script = ExtResource("1_15pem")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=79603920]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=375060656]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2126716394]

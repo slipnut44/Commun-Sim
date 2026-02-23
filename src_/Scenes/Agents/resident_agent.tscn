@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d1c6llniu57td"]
+
+[ext_resource type="PackedScene" uid="uid://c614k46wi4ox4" path="res://Scenes/Agents/Base_Agent.tscn" id="1_4tr53"]
+[ext_resource type="Script" uid="uid://bcncd3yaekn24" path="res://Scenes/Agents/resident_agent.gd" id="2_obhbw"]
+[ext_resource type="Texture2D" uid="uid://cvrxs13uadj8m" path="res://addons/kenney_tiny_battle_assets/tilemap_packed.png" id="3_bsxw6"]
+
+[node name="Resident_agent" unique_id=585923694 instance=ExtResource("1_4tr53")]
+script = ExtResource("2_obhbw")
+
+[node name="Sprite2D" parent="." index="0" unique_id=79603920]
+texture = ExtResource("3_bsxw6")
+region_enabled = true
+region_rect = Rect2(256, 112, 16, 16)

@@ -1,0 +1,31 @@
+World2D (Node2D)
+│
+├── TileMap_Ground
+├── TileMap_Roads
+├── TileMap_Decor
+│
+├── BuildingManager (Node)
+├── EventManager (Node)
+├── AgentManager (Node)
+│
+├── Buildings (Node2D)
+│     ├── PoliceStation.tscn
+│     ├── CrisisHub.tscn
+│     ├── SocialServices.tscn
+│     └── CommunityCenter.tscn
+│
+├── HomeNodes (Node2D)
+│     └── HomeNode.tscn
+│
+├── Agents (Node2D)
+│     ├── PoliceAgent.tscn
+│     ├── CrisisAgent.tscn
+│     ├── SocialWorkerAgent.tscn
+│     └── CommunityAgent.tscn
+│
+└── UI (CanvasLayer)
+      ├── BuildMenu
+      ├── StatsPanel
+      ├── EventLog
+      └── BudgetDisplay
+

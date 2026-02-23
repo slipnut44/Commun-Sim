@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cdo7xiq1hnyap"]
+
+[ext_resource type="PackedScene" uid="uid://cydy17ggfk1jj" path="res://Scenes/Buildings/Base_Building.tscn" id="1_53yd0"]
+[ext_resource type="Script" uid="uid://ygs6xbwb0odp" path="res://Scenes/Buildings/Social_Service.gd" id="2_fy574"]
+
+[node name="Social_Service" unique_id=1588752614 instance=ExtResource("1_53yd0")]
+script = ExtResource("2_fy574")

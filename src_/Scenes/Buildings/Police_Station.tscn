@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cbg053v4qtumh"]
+
+[ext_resource type="PackedScene" uid="uid://cydy17ggfk1jj" path="res://Scenes/Buildings/Base_Building.tscn" id="1_m5a6y"]
+[ext_resource type="Script" uid="uid://d2uiljkrt63rv" path="res://Scenes/Buildings/Police_Station.gd" id="2_eli13"]
+
+[node name="Police_Station" unique_id=1588752614 instance=ExtResource("1_m5a6y")]
+script = ExtResource("2_eli13")
