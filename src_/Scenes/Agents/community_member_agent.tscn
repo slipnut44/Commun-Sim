@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://ct3q6ovi8hldt"]
+
+[ext_resource type="PackedScene" uid="uid://c614k46wi4ox4" path="res://Scenes/Agents/Base_Agent.tscn" id="1_ev8h4"]
+[ext_resource type="Texture2D" uid="uid://cvrxs13uadj8m" path="res://addons/kenney_tiny_battle_assets/tilemap_packed.png" id="2_hdmtk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jspn8"]
+size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40txl"]
+size = Vector2(16, 15)
+
+[node name="Crisis_agent" unique_id=585923694 instance=ExtResource("1_ev8h4")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=79603920]
+texture = ExtResource("2_hdmtk")
+region_enabled = true
+region_rect = Rect2(256, 128, 16, 16)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="1" unique_id=2144036006]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_jspn8")
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(375060656) index="0" unique_id=1869166987]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_40txl")
+
+[node name="CollisionShape2D" parent="." index="3" unique_id=2126716394]
+position = Vector2(0, 0.5)

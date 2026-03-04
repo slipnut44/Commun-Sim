@@ -15,6 +15,11 @@ run/main_scene="uid://cyh0qqga6gjdm"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1200
+window/size/viewport_height=720
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

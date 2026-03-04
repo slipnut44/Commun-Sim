@@ -1,5 +1,11 @@
 [gd_scene format=3 uid="uid://bdamhgw6d0k6w"]
 
 [ext_resource type="PackedScene" uid="uid://c614k46wi4ox4" path="res://Scenes/Agents/Base_Agent.tscn" id="1_5s7cs"]
+[ext_resource type="Texture2D" uid="uid://cvrxs13uadj8m" path="res://addons/kenney_tiny_battle_assets/tilemap_packed.png" id="2_fivnx"]
 
 [node name="police_agent" unique_id=585923694 instance=ExtResource("1_5s7cs")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=79603920]
+texture = ExtResource("2_fivnx")
+region_enabled = true
+region_rect = Rect2(256, 112, 16, 16)

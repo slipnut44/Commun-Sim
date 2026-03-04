@@ -9,7 +9,7 @@ class_name Base_Building
 var level := 1
 var radius := 5
 var max_agents := 10
-var building_name := "NonSense Name"
+var building_name := ""
 
 # function that will be used to increase building stats
 func upgrade_building():

@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b0m07p0vcfcgi" path="res://Scenes/Agents/Base_Agent.gd" id="1_15pem"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15pem"]
+size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cu3k2"]
+size = Vector2(16, 15)
+
 [node name="Base_Agent" type="CharacterBody2D" unique_id=585923694]
 script = ExtResource("1_15pem")
 
@@ -9,4 +15,8 @@ script = ExtResource("1_15pem")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=375060656]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2126716394]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1869166987]
+shape = SubResource("RectangleShape2D_15pem")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2126716394]
+shape = SubResource("RectangleShape2D_cu3k2")
