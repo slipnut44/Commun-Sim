@@ -1,5 +1,11 @@
 [gd_scene format=3 uid="uid://dvclvx0u4y0fw"]
 
 [ext_resource type="PackedScene" uid="uid://c614k46wi4ox4" path="res://Scenes/Agents/Base_Agent.tscn" id="1_kn0nf"]
+[ext_resource type="Texture2D" uid="uid://cvrxs13uadj8m" path="res://addons/kenney_tiny_battle_assets/tilemap_packed.png" id="2_05uyh"]
 
 [node name="Social_worker_agent" unique_id=585923694 instance=ExtResource("1_kn0nf")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=79603920]
+texture = ExtResource("2_05uyh")
+region_enabled = true
+region_rect = Rect2(256, 128, 16, 16)

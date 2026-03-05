@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c614k46wi4ox4" path="res://Scenes/Agents/Base_Agent.tscn" id="1_5s7cs"]
 [ext_resource type="Texture2D" uid="uid://cvrxs13uadj8m" path="res://addons/kenney_tiny_battle_assets/tilemap_packed.png" id="2_fivnx"]
+[ext_resource type="Script" uid="uid://ca4bilr56jkg0" path="res://Scenes/Agents/Agent_Scripts/police_agent.gd" id="2_xysyo"]
 
 [node name="police_agent" unique_id=585923694 instance=ExtResource("1_5s7cs")]
+script = ExtResource("2_xysyo")
 
 [node name="Sprite2D" parent="." index="0" unique_id=79603920]
 texture = ExtResource("2_fivnx")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b01nscp0aaq0w"]
 
 [ext_resource type="PackedScene" uid="uid://cydy17ggfk1jj" path="res://Scenes/Buildings/Base_Building.tscn" id="1_3idbt"]
-[ext_resource type="Script" uid="uid://kgm6f56gmyjo" path="res://Scenes/Buildings/Home.gd" id="2_pl71w"]
+[ext_resource type="Script" uid="uid://kgm6f56gmyjo" path="res://Scenes/Buildings/Building_Scripts/Home.gd" id="2_pl71w"]
 [ext_resource type="Texture2D" uid="uid://cvrxs13uadj8m" path="res://addons/kenney_tiny_battle_assets/tilemap_packed.png" id="3_yfgna"]
 
 [node name="Home" unique_id=1588752614 instance=ExtResource("1_3idbt")]

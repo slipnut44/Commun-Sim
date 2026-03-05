@@ -1,0 +1,129 @@
+# script that handles the logic of building and road placment on the game map.
+# ensuring buildings aren't placed on top of one another or on water tiles.
+
+extends Node2D
+
+# onready esnures that the ground map is only pulled when we need it.
+# ensuring we have all the other nodes loaded already. 
+# additionally the $ sign is used to point to objects within the scene structure
+
+# constants regarding the preloaded scenes possible. ensuring that the previews are 
+# always only instantiated once when needed
+const HOME_SCENE := preload("res://Scenes/Buildings/Home.tscn")
+
+# constants regarding the selected building scene to load and valid tile placements
+const FORBIDDEN = 'forbid'
+const ALL_BUILDINGS = "all"
+const HOME = "home"
+const POLICE = "police"
+const COM_CEN = "community centre"
+const SOC_SER = "social services"
+const ROAD = "road"
+const BRIDGE = "bridge"
+
+# constants reagrding tileset id's
+const GRASS_TILE_ID = 1
+const WATER_TILE_ID = 2
+const BUILDING_TILE_ID = 3
+const ROAD_TILE_ID = 4
+const BRIDGE_TILE_ID = 5
+const MOUNTAIN_TILE_ID = 6 # TODO: add mountains to the terrain
+
+@onready var ground_mapping = $"../TileLayer_Ground"  # grabbing the ground map in the scene
+@onready var placement_mask = $"../Building_Rd_Placement_Mask" # handles the logic of where buildings can be placed
+@onready var building_mapping = $"../Buildings" # carries the placed buildings from the player
+# used as a ghosting preview of where the user is intending to place a building
+@onready var preview: Node2D
+var is_placing := false # indicates when the user wants is placing something
+var valid_building_on_tile := 'forbid' # indicates if the current tile wthin _process can 
+								  # have a building or road placed on it. 
+								  # forbidden,
+								  # homes,
+								  # roads, 
+								  # bridges,
+								  # all
+var selected_building_type := '' # indicates the currently selected building
+								 # home,
+								 # police,
+								 # social services,
+								 # community centre,
+								 # roads,
+								 # bridges
+var can_place_here = true # indicates if a building can be placed on a tile or not
+
+# TODO: fix the following functions so that it works in tandem with the UI. right now is for testing purposes
+# is used when needing to place a building on the map
+func place_building():
+	# instantiating the needed scene
+	var building = HOME_SCENE.instantiate()
+	# linking global position of the preview
+	building.global_position = preview.global_position
+	# adding the building to the world tree
+	building_mapping.add_child(building)
+	# mark the current tile on the placement mask as occupied 
+	var tile_pos = placement_mask.local_to_map(preview.global_position)
+	placement_mask.set_cell(tile_pos, BUILDING_TILE_ID)
+
+# TODO: fix the following  functions so that it functions only when the user is placing a building or road
+
+# updates at each frame what the user is doing with their mouse
+func _process(delta):
+	if is_placing:
+		var mouse_posi = get_global_mouse_position() # getting the global mouse position
+		var tile_posi = ground_mapping.local_to_map(mouse_posi) # getting the tile position in relation to current mouse position
+		var snapped_posi = ground_mapping.map_to_local(tile_posi) # gets exact pixel coords in relation to the mouse over the corresponding tile
+		preview.global_position = snapped_posi
+
+		# gathering placement mask details
+		var pm_tile_posi = placement_mask.local_to_map(mouse_posi)
+		var mask_id = placement_mask.get_cell_source_id(pm_tile_posi) # get the tile source id of whatever the mouse is currently over
+
+		# check if tile is valid
+		valid_tile_mask(mask_id)
+
+# determines if the given mask_id (id) is valid for the building in question being placement
+func valid_tile_mask(id: int):
+	print("current tile id ", id)
+	# TODO: add more dynamic building permissions
+	match id:
+		GRASS_TILE_ID: valid_building_on_tile = ALL_BUILDINGS; 
+		WATER_TILE_ID: valid_building_on_tile = BRIDGE	
+		BUILDING_TILE_ID: valid_building_on_tile = FORBIDDEN
+		ROAD_TILE_ID: valid_building_on_tile = FORBIDDEN
+		BRIDGE_TILE_ID: valid_building_on_tile = FORBIDDEN
+		MOUNTAIN_TILE_ID: valid_building_on_tile = FORBIDDEN
+
+
+	
+	if valid_building_on_tile == ALL_BUILDINGS: can_place_here = true # checks if any building type is valid on the current tile
+	elif valid_building_on_tile == FORBIDDEN: can_place_here = false # checks if no building types is valid on the selected tile
+	elif valid_building_on_tile == selected_building_type: can_place_here = true # if the selected building 
+																				 # type is either a home, road, or bridge, then 
+																				 # they're valid on their respective tiles
+
+# takes user input based on mouse click
+func _input(event):
+	if is_placing and event is InputEventMouseButton and event.pressed and can_place_here:
+		print("building has been placed")
+		place_building()
+		start_placing(false)
+		
+# function that switches whether or not the user is placing a building or not
+func start_placing(setting: bool):
+	is_placing = setting
+	# show or hide the preview based on if the user is trying to place something
+	if is_placing: preview.show()
+	else: preview.show()
+	
+# resposnible here for adding the preview image of the selected building/road
+func _ready():
+	preview = HOME_SCENE.instantiate()
+	add_child(preview)
+	preview.modulate = Color(1, 1, 1, 0.5) # making the preview semi-transparent
+	preview.hide()
+
+# sets the currently selected building
+func set_current_building(build: String): selected_building_type = build
+
+# gets the currently selected building
+func get_current_building() -> String: return selected_building_type

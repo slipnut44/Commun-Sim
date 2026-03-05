@@ -15,10 +15,14 @@ run/main_scene="uid://cyh0qqga6gjdm"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Sim_Manager="*uid://b4jvtyvmqebcs"
+
 [display]
 
-window/size/viewport_width=1200
-window/size/viewport_height=720
+window/size/viewport_width=1600
+window/size/viewport_height=900
 
 [physics]
 
@@ -27,3 +31,4 @@ window/size/viewport_height=720
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
