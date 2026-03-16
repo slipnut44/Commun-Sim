@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://dd80og738hrs4" path="res://Scenes/World_Scripts/RdAutoTile.gd" id="8_cwb1p"]
 [ext_resource type="Script" uid="uid://dacctrjtxsj4d" path="res://Scenes/World_Scripts/a_star_2d.gd" id="8_ecms0"]
 [ext_resource type="Script" uid="uid://bfckaxmfkoj0d" path="res://Scenes/World_Scripts/Road_Manager.gd" id="8_isaoy"]
-[ext_resource type="Script" uid="uid://b4jvtyvmqebcs" path="res://Scenes/World_Scripts/sim_manager.gd" id="9_cwb1p"]
 
 [node name="The_World" type="Node2D" unique_id=2038100690]
 script = ExtResource("1_0vtx3")
@@ -59,4 +58,3 @@ script = ExtResource("8_cwb1p")
 script = ExtResource("8_ecms0")
 
 [node name="Sim_Manager" type="Node2D" parent="." unique_id=44353500]
-script = ExtResource("9_cwb1p")

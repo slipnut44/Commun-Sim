@@ -1,127 +1,206 @@
-# Commun-Sim
+# README
 
-A community simulator game that explores the positive effects of community-focused funding and methods of providing safety. This interactive experience simulates how different community interventions impact neighborhood stability and quality of life.
+# Commun‑Sim
 
-## About the Project
-
-Commun-Sim is an educational simulation game where players manage community resources and respond to neighborhood events. The game features a dynamic simulation loop with various building types, agents, and households that interact to create emergent gameplay around community safety and stability.
-
-### Core Features
-
-- **Dynamic Simulation**: Real-time simulation loop with time-steps where homes emit events based on stability
-- **Multiple Building Types**: Police Stations, Crisis Response Hubs, Social Services Offices, and Community Centers
-- **Agent System**: Specialized agents (Police, Crisis Responders, Social Workers, Community Workers) respond to neighborhood needs
-- **Event System**: Conflicts, mental health crises, unmet needs, and community events occur dynamically
-- **Resource Management**: Build and manage community infrastructure to improve neighborhood stability
-- **Interactive UI**: Build menus, statistics panels, event logs, and budget displays
-
-## Requirements
-
-### Build & Runtime Dependencies
-
-- **Godot Engine 4.6+** - The game engine required to run and build the project
-- **Operating System**: Windows, macOS, or Linux
-- **RAM**: Minimum 4GB recommended
-- **Disk Space**: 500MB for Godot and project files
-
-## Installation & Setup
-
-### Prerequisites
-
-1. Download and install [Godot Engine 4.6](https://godotengine.org/download/)
-2. Clone or download this repository
-
-### Opening the Project
-
-1. Open Godot Engine
-2. Click "Open Project"
-3. Navigate to the `Commun-Sim` directory
-4. Select the `src_` folder and click "Open"
-5. Wait for Godot to import the project assets
-
-## Building & Running
-
-### Running in the Editor
-
-1. Open the project in Godot Engine
-2. Click the **Play** button (or press F5) to run the game
-3. The main scene will launch automatically
-
-### Building an Executable
-
-1. In Godot, go to **File → Export Project**
-2. Select your target platform (Windows, macOS, or Linux)
-3. If the export preset doesn't exist, create a new one:
-   - Click "Add..." to create a new export preset
-   - Configure the export settings (output path, resources to include, etc.)
-4. Click "Export Project" and select an output directory
-5. Godot will compile and package the game
-
-#### Export Presets Available
-
-- **Windows (EXE)**: Exports as a standalone Windows executable
-- **macOS (DMG)**: Exports as a macOS application bundle
-- **Linux (Binary)**: Exports as a Linux executable
-
-### Running the Built Game
-
-After exporting, run the generated executable for your platform:
-
-```bash
-# Windows
-./CommUnSim.exe
-
-# macOS
-open CommUnSim.app
-
-# Linux
-./CommUnSim
-```
-
-## Project Structure
-
-```
-Commun-Sim/
-├── src_/
-│   ├── project.godot          # Godot project configuration
-│   ├── addons/                # Godot plugins and assets
-│   ├── scenes/                # Game scenes (.tscn files)
-│   ├── scripts/               # GDScript source files
-│   └── assets/                # Images, audio, and other resources
-├── Docs/
-│   ├── core-features-list.md  # Detailed feature documentation
-│   └── basic_proj_structure.txt # Scene and node hierarchy
-└── README.md
-```
-
-## Development
-
-### Adding New Features
-
-1. Open the project in Godot
-2. Create new scenes in the `scenes/` directory
-3. Attach GDScript files to nodes for functionality
-4. Test using the Play button in the editor
-
-### Key Scripts & Managers
-
-- **Sim_Manager**: Autoload singleton that manages the simulation loop
-- **BuildingManager**: Handles building placement and operations
-- **AgentManager**: Controls agent behavior and spawning
-- **EventManager**: Manages event generation and distribution
-
-## License
-
-This project includes Kenney's Tiny Battle Assets addon which is freely available.
-
-## Contributing
-
-For contributions, feature requests, or bug reports, please open an issue or pull request on GitHub.
-
-## Author
-
-**Shamar Pennant** (slipnut44)
+A community simulator game that explores the impact of community‑focused funding, care‑based safety strategies, and different crisis‑response models. The simulation demonstrates how policing, social services, crisis response, and community support shape neighborhood stability and well‑being.
 
 ---
 
-For more information about the game mechanics and design, see the documentation in the `Docs/` folder.
+## About the Project
+
+Commun‑Sim is an educational simulation where players build community infrastructure and observe how different responders handle crises. Homes generate events, agents respond based on their role, and the resulting patterns reveal how different systems influence community outcomes.
+
+### Core Features
+
+- **Dynamic Simulation Loop** — Homes emit events based on stability and unmet needs
+- **Multiple Building Types** — Homes, Police Stations, Social Services, Community Centers
+- **Agent System** — Police, Social Workers, Community Workers, Crisis Responders
+- **Event System** — Conflicts, crises, unmet needs, and community events
+- **Resource Management** — Build infrastructure to influence stability
+- **Interactive UI** — Build mode, stats panels, event logs, budget display
+
+---
+
+## Repository Structure
+
+```
+Commun-Sim/
+├── Docs/
+│   ├── core-features-list.md
+│   └── basic_proj_structure.txt
+├── README.md
+└── src_/
+    ├── project.godot
+    ├── addons/
+    ├── Scenes/
+    ├── scripts/
+    ├── assets/
+    ├── launcher.sh
+    ├── launcher.bat
+    ├── export_presets.cfg
+    ├── sample/
+    │   ├── CommunSim-Windows.console.exe
+    │   ├── CommunSim-Windows.exe
+    │   ├── Commun-Sim.x86_64
+    │   ├── Commun-Sim.sh
+    │   ├── Commun-Sim.pck
+    │   ├── CommunSim-Windows.pck
+    │   ├── launcher.sh
+    │   ├── launcher.bat
+    │   └── success_rates.txt
+    └── ...
+```
+
+- **`src_/`** contains the Godot project.
+- **`src_/sample/`** contains prebuilt executables for Windows and Linux.
+- **`Docs/`** contains design and feature documentation.
+
+---
+
+## Running Commun‑Sim (Executable Version)
+
+Prebuilt executables are included in the repository under `src_/sample/`.
+
+### Windows
+
+1. Navigate to `src_/sample/`
+2. Run `CommunSim-Windows.console.exe`
+
+This launches:
+
+- The simulator window
+- A terminal window showing real‑time agent events
+
+Keep all files in the folder together — the `.exe` and `.pck` must remain side‑by‑side.
+
+### Linux
+
+1. Navigate to `src_/sample/`
+2. Make the launcher executable (first time only):
+
+```
+chmod +x Commun-Sim.sh
+```
+
+1. Then run:
+
+```
+./Commun-Sim.sh
+```
+
+This launches the simulator and a terminal window for event output.
+
+---
+
+## Running From Source (Godot Editor)
+
+If you want to modify or extend the game:
+
+1. Install **Godot Engine 4.6+**
+2. Open Godot → **Open Project**
+3. Select the folder:
+
+```
+Commun-Sim/src_/
+```
+
+1. Press **F5** to run the game in the editor.
+
+---
+
+## Building Your Own Executable
+
+If you want to export new builds:
+
+1. Open the project in Godot (`src_/`)
+2. Go to **File → Export Project**
+3. Choose a preset (Windows or Linux)
+4. If no preset exists:
+    - Click **Add…**
+    - Select your platform
+    - Ensure the `.pck` is included
+5. Click **Export Project**
+6. Godot will generate:
+    - A platform‑specific executable
+    - A matching `.pck` file
+
+Place both files together in the same directory before running.
+
+---
+
+## Interaction & Controls
+
+### Build Mode
+
+- **Ctrl + B** — Toggle Build Mode
+- All building shortcuts require Build Mode to be active
+
+### Building Types
+
+- **H** — Home
+- **S** — Social Services
+- **C** — Community Center
+- **P** — Police Station
+
+### Placement Workflow
+
+1. Press **Ctrl + B**
+2. Press a building key
+3. A ghost preview appears
+4. Click on valid terrain (grass)
+5. Agents spawn automatically
+
+---
+
+## Generated Files
+
+### `report.txt` — Simulation Report
+
+Created automatically when the game closes.
+
+Located in the same directory as the executable.
+
+Includes:
+
+- Responded events
+- Successes / failures
+- Success rates
+- Home agent average content
+
+### `success_rates.txt` — Optional Effectiveness Overrides
+
+Located in `src_/sample/success_rates.txt`
+
+Format of the `success_rates.txt` file is as follows:
+
+```
+home, social_services, community_center, police
+```
+
+Example:
+
+```
+0.2, 0.6, 0.56, 0.4
+```
+
+Values represent probability of successful crisis resolution (0.0–1.0).
+
+If missing or invalid, defaults are used.
+
+---
+
+## Development Notes
+
+Key managers:
+
+- **Sim_Manager** — Simulation loop
+- **BuildingManager** — Building placement & logic
+- **AgentManager** — Agent spawning & behavior
+- **EventManager** — Crisis generation & routing
+
+<aside>
+<img src="https://www.notion.so/icons/code_orange.svg" alt="https://www.notion.so/icons/code_orange.svg" width="40px" />
+
+***Author***: Shamar Pennant (slipnut44)
+
+</aside>

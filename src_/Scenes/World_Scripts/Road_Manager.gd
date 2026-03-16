@@ -16,8 +16,6 @@ var is_placing = false
 # has multiple if statements for the same event to ensure that the 
 # event is captured in despite how it's recognized 
 func handle_input(event):
-	# TODO: remove later
-	print("road manager is getting events")
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and is_placing:
 		is_dragging = event.pressed
@@ -36,10 +34,6 @@ func paint_road():
 	# gather the mouse position
 	var mouse_posi = get_viewport().get_mouse_position()
 	var cell = road_map.local_to_map(road_map.to_local(mouse_posi))
-
-	# TODO: remove later
-	print("road local:", road_map.to_local(mouse_posi))
-	print("ground local:", $"../TileLayer_Ground".to_local(mouse_posi))	
 
 	# paint the cell using the road auto tiler
 	road_map.place_road(cell)

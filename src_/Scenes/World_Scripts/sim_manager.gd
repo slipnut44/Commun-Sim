@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 # note, that this script has been set to be globally accessible
 
@@ -23,6 +23,16 @@ var agents : Dictionary[StringName, Base_Agent]= {}
 var next_agent_id = 0
 # used to keep track of the agent node within the world scene tree
 var AGENT_NODE
+
+var report_saved := false # tracks whether the report was already saved
+
+# effectiveness rates loaded from file
+var effectiveness_rates = {
+	"home": 0.2,
+	"social": 0.6,
+	"community": 0.56,
+	"police": 0.4
+}
 
 # generates and formats a report of agent statistics to a string
 func generate_report() -> String:
@@ -80,8 +90,24 @@ func generate_report() -> String:
 
 	return report
 
-# creates a new file in the user directory for the agent success report
-func create_new_file(path: String = "user://report.txt"):
+# creates a new file in the launch directory for the agent success report
+func create_new_file(path: String = ""):
+	if report_saved:
+		return
+	report_saved = true
+
+	# Use executable directory first (for built game), then user data directory (for editor)
+	if path.is_empty():
+		# Try executable directory first
+		var exe_path = OS.get_executable_path().get_base_dir() + "/report.txt"
+		if FileAccess.file_exists(exe_path) or OS.get_executable_path().get_base_dir().count('/') > 1:
+			path = exe_path
+		else:
+			# Fall back to user data directory
+			path = OS.get_user_data_dir() + "/report.txt"
+
+	print("[REPORT]: Saving report...")
+
 	var report := generate_report()
 
 	var file := FileAccess.open(path, FileAccess.WRITE)
@@ -101,12 +127,60 @@ func _notification(what: int) -> void:
 
 func _ready() -> void:
 	AGENT_NODE = get_node("/root/The_World/Agents")
+	
+	# Load effectiveness rates from file at simulation startup
+	load_effectiveness_rates_from_file()
+
+# Load effectiveness rates from success_rates.txt file
+func load_effectiveness_rates_from_file():
+	# Try multiple paths: user data dir first (for editor), then executable dir (for built game)
+	var paths_to_check = [
+		OS.get_user_data_dir() + "/success_rates.txt",  # User data directory (for editor)
+		OS.get_executable_path().get_base_dir() + "/success_rates.txt"  # Executable directory (for built game)
+	]
+	
+	var path = ""
+	for check_path in paths_to_check:
+		print("Checking for success rates file at: ", check_path)
+		if FileAccess.file_exists(check_path):
+			path = check_path
+			break
+	
+	if path.is_empty():
+		print("Success rates file not found in any location, using defaults")
+		return
+	
+	print("Found success rates file at: ", path)
+	
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		print("Failed to open success rates file, using defaults")
+		return
+	
+	var file_content = file.get_as_text().strip_edges()
+	if file_content.is_empty():
+		print("Success rates file is empty, using defaults")
+		return
+	
+	var parts := file_content.split(",", false)
+	if parts.size() != 4:
+		print("Invalid format in success rates file, using defaults")
+		return
+	
+	var rates = []
+	for p in parts:
+		rates.append(float(p.strip_edges()))
+	
+	effectiveness_rates["home"] = rates[0]
+	effectiveness_rates["social"] = rates[1]
+	effectiveness_rates["community"] = rates[2]
+	effectiveness_rates["police"] = rates[3]
+	print("Loaded effectiveness rates: ", effectiveness_rates)
 
 func generate_agent_id(n: StringName) -> StringName:
-	var format_string = "[{0} Agent : {1}] ".format([n, next_agent_id])
+	var id = "[%s Agent : %d]" % [n, next_agent_id]
 	next_agent_id += 1
-
-	return format_string
+	return id
 
 # responsible for adding the agent to the dictionary in the format listed above. 
 # takes in a Base_Agent object as a param to be processed
@@ -138,12 +212,6 @@ func resolve_event(responder: Base_Agent):
 	# crisis agent returns to idle
 	crisis_agent.state = Base_Agent.Agent_State.PAUSED
 	crisis_agent.pause_timer = randf_range(0.5, 1.5)
-
-	# TODO: remove later
-	print("DEBUG: ", responder.string_id,
-	  " responded=", responder.events_responded,
-	  " success=", responder.events_successes,
-	  " failure=", responder.events_failures)
 
 # simplified event function. logic driving how agents will respond/produce to an event
 # takes in the agent id for the respective agent that produced the event

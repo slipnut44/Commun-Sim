@@ -15,8 +15,7 @@ const POLICE = "Police_Station"
 const COM_CEN = "Community_Center"
 const SOC_SER = "Social_Service"
 
-# TODO: correct these constants to be 
-# constants reagrding tileset id's
+# TODO: correct these constants to be constants reagrding tileset id's
 const GRASS_TERRAIN = "Grass"
 const WATER_TERRAIN = "Water"
 const BUILDING_TERRAIN = "Building"
@@ -92,8 +91,7 @@ func _process(delta):
 
 		# check if atlas coord is valid
 		valid_terrain(tn)
-
-# TODO: remove print statements after debugging
+		
 # responsible for retrieving the terrain name corresponding to a given 2d coordinate
 func retrieve_terrain_name(posi: Vector2i) -> StringName:
 		# gathering information to retrieve tile information based on where the mouse is

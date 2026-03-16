@@ -43,52 +43,13 @@ var radius := 5
 var max_agents := 10
 var building_name := ""
 
-# takes in a txt file and returns the full text of whats inside
-func load_data(path := "user://success_rates.txt") -> String:
-		# Check if file exists first
-	if not FileAccess.file_exists(path):
-		return ""  # nonexistent → skip
-
-	var file := FileAccess.open(path, FileAccess.READ)
-	if file == null:
-		return ""  # failed to open → skip
-
-	if file.get_length() == 0:
-		return ""  # empty → skip
-
-	return file.get_as_text()
-
-# parses information from within the file. taking 4 float values
-# comma seperated and on a single line. saving them in the 
-# effectiveness values above
-func parse_za_file(line: String) -> Array[float]:
-	if line.is_empty():
-		return []  # nothing to parse
-
-	var parts := line.strip_edges().split(",", false)
-	if parts.size() != 4:
-		return []  # malformed input
-
-	# Convert each part to an int
-	var nums := []
-	for p in parts:
-		nums.append(float(p.strip_edges()))
-
-	return nums
-
 func _ready() -> void:
-	var data := load_data()
-	if data.is_empty(): print("No success rate data to load")
-	else: 
-		print("Loaded: ", data)
-		var tmp: Array[float] = parse_za_file(data)
-
-		if tmp.is_empty(): print("error parsing line")
-		else:
-			EFFECT_HOME = tmp[0]
-			EFFECT_SOC =  tmp[1]
-			EFFECT_COM =  tmp[2]
-			EFFECT_POL =  tmp[3]
+	# Get effectiveness rates from Sim_Manager (loaded at startup)
+	EFFECT_HOME = Sim_Manager.effectiveness_rates["home"]
+	EFFECT_SOC = Sim_Manager.effectiveness_rates["social"]
+	EFFECT_COM = Sim_Manager.effectiveness_rates["community"]
+	EFFECT_POL = Sim_Manager.effectiveness_rates["police"]
+	print("Building effectiveness rates set: HOME=", EFFECT_HOME, " SOC=", EFFECT_SOC, " COM=", EFFECT_COM, " POL=", EFFECT_POL)
 
 
 # function that will be used to increase building stats
