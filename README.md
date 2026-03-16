@@ -1,10 +1,6 @@
-# README
-
 # Commun‑Sim
 
 A community simulator game that explores the impact of community‑focused funding, care‑based safety strategies, and different crisis‑response models. The simulation demonstrates how policing, social services, crisis response, and community support shape neighborhood stability and well‑being.
-
----
 
 ## About the Project
 
@@ -18,8 +14,6 @@ Commun‑Sim is an educational simulation where players build community infrastr
 - **Event System** — Conflicts, crises, unmet needs, and community events
 - **Resource Management** — Build infrastructure to influence stability
 - **Interactive UI** — Build mode, stats panels, event logs, budget display
-
----
 
 ## Repository Structure
 
@@ -55,8 +49,6 @@ Commun-Sim/
 - **`src_/sample/`** contains prebuilt executables for Windows and Linux.
 - **`Docs/`** contains design and feature documentation.
 
----
-
 ## Running Commun‑Sim (Executable Version)
 
 Prebuilt executables are included in the repository under `src_/sample/`.
@@ -90,8 +82,6 @@ chmod +x Commun-Sim.sh
 
 This launches the simulator and a terminal window for event output.
 
----
-
 ## Running From Source (Godot Editor)
 
 If you want to modify or extend the game:
@@ -105,8 +95,6 @@ Commun-Sim/src_/
 ```
 
 1. Press **F5** to run the game in the editor.
-
----
 
 ## Building Your Own Executable
 
@@ -125,8 +113,6 @@ If you want to export new builds:
     - A matching `.pck` file
 
 Place both files together in the same directory before running.
-
----
 
 ## Interaction & Controls
 
@@ -149,8 +135,6 @@ Place both files together in the same directory before running.
 3. A ghost preview appears
 4. Click on valid terrain (grass)
 5. Agents spawn automatically
-
----
 
 ## Generated Files
 
@@ -186,8 +170,6 @@ Example:
 Values represent probability of successful crisis resolution (0.0–1.0).
 
 If missing or invalid, defaults are used.
-
----
 
 ## Development Notes
 
