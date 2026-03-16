@@ -51,7 +51,7 @@ Commun-Sim/
 
 ## Running Commun‑Sim (Executable Version)
 
-Prebuilt executables are included in the repository under `src_/sample/`.
+Prebuilt executables are included in the repository under `src_/sample`. And a packaged `sample_files.zip` file is under `src_/`
 
 ### Windows
 
