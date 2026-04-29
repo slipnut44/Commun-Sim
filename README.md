@@ -183,6 +183,6 @@ Key managers:
 <aside>
 <img src="https://www.notion.so/icons/code_orange.svg" alt="https://www.notion.so/icons/code_orange.svg" width="40px" />
 
-***Author***: Shamar Pennant (slipnut44)
+***Author***: Shamar Pennant
 
 </aside>
